@@ -22,7 +22,7 @@ func TestCreateUser(t *testing.T) {
 
 	userDB := NewUser(db)
 
-	err = userDB.CreateUser(user)
+	err = userDB.Create(user)
 
 	assert.Nil(t, err)
 
@@ -49,7 +49,7 @@ func TestFindByEmail(t *testing.T) {
 
 	userDB := NewUser(db)
 
-	err = userDB.CreateUser(user)
+	err = userDB.Create(user)
 
 	assert.Nil(t, err)
 
