@@ -1,14 +1,13 @@
 package entity
 
 import (
-	"github.com/google/uuid"
 	"golang.org/x/crypto/bcrypt"
 
 	"github.com/crnvl96/go-api/pkg/entity"
 )
 
 type User struct {
-	ID       uuid.UUID `json:"id"`
+	ID       entity.ID `json:"id"`
 	Name     string    `json:"name"`
 	Email    string    `json:"email"`
 	Password string    `json:"-"`

@@ -4,11 +4,13 @@ import (
 	"github.com/google/uuid"
 )
 
-func NewId() uuid.UUID {
-	return uuid.New()
+type ID = uuid.UUID
+
+func NewId() ID {
+	return ID(uuid.New())
 }
 
-func ParseID(s string) (uuid.UUID, error) {
+func ParseID(s string) (ID, error) {
 	id, err := uuid.Parse(s)
 
 	return id, err

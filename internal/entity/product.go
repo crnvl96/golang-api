@@ -4,8 +4,6 @@ import (
 	"errors"
 	"time"
 
-	"github.com/google/uuid"
-
 	"github.com/crnvl96/go-api/pkg/entity"
 )
 
@@ -18,7 +16,7 @@ var (
 )
 
 type Product struct {
-	ID        uuid.UUID `json:"id"`
+	ID        entity.ID `json:"id"`
 	Name      string    `json:"name"`
 	Price     float64   `json:"price"`
 	CreatedAt time.Time `json:"created_at"`
