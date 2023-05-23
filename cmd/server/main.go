@@ -7,15 +7,34 @@ import (
 	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/jwtauth"
+	swag "github.com/swaggo/http-swagger"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 
 	"github.com/crnvl96/go-api/configs"
+	_ "github.com/crnvl96/go-api/docs"
 	"github.com/crnvl96/go-api/internal/entity"
 	"github.com/crnvl96/go-api/internal/infra/database"
 	"github.com/crnvl96/go-api/internal/infra/webserver/handlers"
 )
 
+// @title           Golang API
+// @version         1.0
+// @description     Golang API example
+// @termsOfService  http://swagger.io/terms/
+
+// @contact.name   crnvl96
+// @contact.url    http://github.com/crnvl96
+// @contact.email  adran.carnavale@gmail.com
+
+// @license.name  MIT
+// @license.url   https://mit-license.org/
+
+// @host                        localhost:8000
+// @BasePath                    /
+// @securityDefinitions.apiKey  ApiKeyAuth
+// @in                          header
+// @name                        Authorization
 func main() {
 	config, err := configs.LoadConfig(".")
 	if err != nil {
@@ -53,6 +72,8 @@ func main() {
 
 	r.Post("/users", userHandler.Create)
 	r.Post("/users/token", userHandler.GetJWT)
+
+	r.Get("/docs/*", swag.Handler(swag.URL("http://localhost:8000/docs/doc.json")))
 
 	http.ListenAndServe(":8000", r)
 }
