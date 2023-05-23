@@ -1,0 +1,23 @@
+POST http://localhost:8000/products
+Content-Type: application/json
+
+{
+  "name": "Prod 344",
+  "price": 13.55
+}
+
+###
+
+GET http://localhost:8000/products/696f0d01-1adc-4728-88b9-372a31e399fb
+Content-Type: application/json
+
+###
+
+GET http://localhost:8000/products
+Content-Type: application/json
+
+###
+
+DELETE http://localhost:8000/products/696f0d01-1adc-4728-88b9-372a31e399fb
+Content-Type: application/json
+
