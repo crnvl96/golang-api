@@ -12,8 +12,8 @@ type Product struct {
 	DB *gorm.DB
 }
 
-func NewProduct(db *gorm.DB) *Product {
-	return &Product{DB: db}
+func NewProduct(db *gorm.DB) Product {
+	return Product{DB: db}
 }
 
 func (p *Product) Create(product *entity.Product) error {
