@@ -12,8 +12,8 @@ type Product struct {
 	DB *gorm.DB
 }
 
-func NewProduct(db *gorm.DB) Product {
-	return Product{DB: db}
+func NewProduct(db *gorm.DB) *Product {
+	return &Product{DB: db}
 }
 
 func (p *Product) Create(product *entity.Product) error {
@@ -41,7 +41,7 @@ func (p *Product) FindAll(page, limit int, sort string) ([]*entity.Product, erro
 	return products, err
 }
 
-func (p *Product) FindById(id string) (*entity.Product, error) {
+func (p *Product) FindByID(id string) (*entity.Product, error) {
 	var product entity.Product
 	if err := p.DB.Where("id = ?", id).First(&product).Error; err != nil {
 		return nil, err
@@ -50,7 +50,7 @@ func (p *Product) FindById(id string) (*entity.Product, error) {
 }
 
 func (p *Product) Update(product *entity.Product) error {
-	_, err := p.FindById(product.ID.String())
+	_, err := p.FindByID(product.ID.String())
 	if err != nil {
 		return err
 	}
@@ -59,7 +59,7 @@ func (p *Product) Update(product *entity.Product) error {
 }
 
 func (p *Product) Delete(id string) error {
-	product, err := p.FindById(id)
+	product, err := p.FindByID(id)
 	if err != nil {
 		return err
 	}
